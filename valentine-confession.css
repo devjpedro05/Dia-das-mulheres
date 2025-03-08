@@ -1,95 +1,85 @@
-*{
-	box-sizing: border-box;
-}
-
-h1,
-p {
-	font-family: "Quicksand";
-  font-optical-sizing: auto;
-}
-
-h1 {
-	font-weight: 200;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-	margin: 0px;
+    font-family: "Quicksand";
+    font-optical-sizing: auto;
+    margin: 0;
+    overflow: hidden;
 }
 
-.instruction{
-	position: absolute;
-	font-size: 1.6rem;
-	color: rgba(255, 0, 0, 0.892);
-	top: 36%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+h1 {
+    font-weight: 200;
+}
+
+.instruction {
+    position: absolute;
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    color: rgba(255, 0, 0, 0.892);
+    top: 36%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
 }
 
 .msg-container {
-	position: relative;
-	width: 100%;
-	height: 100vh;
-	overflow: hidden;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .heart {
     position: absolute;
     left: 50%;
-    top: 50%; /* Centralizado inicialmente */
-    transform: translate(-50%, -50%); /* Centraliza o coração */
+    top: 50%;
+    transform: translate(-50%, -50%);
     z-index: 3;
     cursor: pointer;
-    transition: transform 2s ease-in-out; /* Transição suave */
+    transition: transform 2s ease-in-out;
 }
 
 .heart > img {
-	width: 50px;
-	height: auto;
-
-	animation-name: beat;
-	animation-duration: 2s;
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: infinite;
-	animation-play-state: running;
+    width: clamp(40px, 5vw, 50px);
+    height: auto;
+    animation: beat 2s ease-in-out infinite running;
 }
 
 .message {
-	padding: 17px;
-	background-color: #ffffff;
-	font-family: "Quicksand", serif;
-  font-optical-sizing: auto;
-	font-size: clamp(20px, 10vw, 22px);
-	text-align: justify;
-	line-height: 1.5em;
-	width: 80%;
-	max-width: 650px;
-	height: 80%;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 2;
-
-	animation-name: openmsg;
-	animation-duration: 2s;
-	animation-timing-function: linear;
-	animation-play-state: paused;
-	animation-fill-mode: forwards;
-	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-	border-radius: 5px;
-	overflow: scroll;
-	scrollbar-width: none;
-}
- 
-.message .sincere{
-	text-align: justify;
-	font-family: "Cinzel, serif";
-	font-size: 22px;
-	line-height: 1.5em;
+    padding: 17px;
+    background-color: #ffffff;
+    font-family: "Quicksand", serif;
+    font-optical-sizing: auto;
+    font-size: clamp(20px, 10vw, 22px);
+    text-align: justify;
+    line-height: 1.5em;
+    width: 80%;
+    max-width: 650px;
+    max-height: 80vh;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    animation: openmsg 2s linear paused forwards;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 5px;
+    overflow-y: auto;
+    scrollbar-width: none;
 }
 
-.message .sincere p{
-	margin: 0;
+.message .sincere {
+    text-align: justify;
+    font-family: "Cinzel", serif;
+    font-size: 22px;
+    line-height: 1.5em;
+}
+
+.message .sincere p {
+    margin: 0;
 }
 
 .container {
@@ -99,8 +89,8 @@ body {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    opacity: 0;  /* Começa invisível */
-    display: none;  /* Começa escondido */
+    opacity: 0;
+    display: none;
     z-index: 10;
     overflow: hidden;
     transition: opacity 1s ease-in-out;
@@ -108,120 +98,99 @@ body {
 
 .show-flower {
     opacity: 1;
-    display: block;  /* Torna visível o contêiner da flor */
+    display: block;
 }
 
 .stars1, .stars2, .stars3 {
-    display: block;  /* As estrelas devem ser visíveis quando a flor aparecer */
-}
-
-.stars1, .stars2, .stars3 {
-    display: none;  /* Inicialmente escondidas */
+    display: none;
 }
 
 .stars1.show-flower, .stars2.show-flower, .stars3.show-flower {
-    display: block; /* As estrelas aparecem quando a flor for mostrada */
+    display: block;
 }
 
-
-
+/* Animações */
 @keyframes beat {
-	0% {
-		width: 50px;
-	}
-	25% {
-		width: 58px;
-	}
-	30% {
-		width: 50px;
-	}
-	50% {
-		width: 45px;
-	}
-	60% {
-		width: 50px;
-	}
-	75% {
-		width: 58px;
-	}
-	100% {
-		width: 50px;
-	}
+    0%, 100% { width: 50px; }
+    25%, 75% { width: 58px; }
+    50% { width: 45px; }
 }
 
 @keyframes openmsg {
-	0% {
-		height: 0px;
-		padding: 0px 20px;
-	}
-	100% {
-		height: 75%;
-		padding: 20px 20px;
-	}
+    0% {
+        height: 0px;
+        padding: 0px 20px;
+    }
+    100% {
+        height: 75%;
+        padding: 20px;
+    }
 }
 
 @keyframes heartMove {
     0% {
-        top: 50%; /* Começa no centro da tela */
-        transform: translate(50%, -50%);
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
     100% {
-        top: 88%; /* Move para baixo */
+        top: 88%;
         transform: translate(-50%, -50%);
     }
 }
 
+/* Classes de controle de animação */
 .openNor {
-	animation-direction: normal;
-	animation-play-state: running;
+    animation-direction: normal;
+    animation-play-state: running;
 }
 
 .closeNor {
-	animation-direction: reverse;
-	animation-play-state: running;
+    animation-direction: reverse;
+    animation-play-state: running;
 }
 
 .no-anim {
-	animation: none;
+    animation: none;
 }
 
 .closed {
-	height: 0px;
-	padding: 0px 20px;
+    height: 0px;
+    padding: 0px 20px;
 }
 
 .bottom {
-	bottom: 5px;
+    bottom: 5px;
 }
 
 .openHer {
-	animation-name: heartMove;
-	animation-duration: 2s;
-	animation-timing-function: linear;
-	animation-play-state: running;
-	animation-fill-mode: forwards;
+    animation: heartMove 2s linear forwards;
 }
 
 .closeHer {
-	animation-name: heartMove;
-	animation-duration: 2s;
-	animation-timing-function: linear;
-	animation-play-state: running;
-	animation-direction: reverse;
-	animation-fill-mode: forwards;
+    animation: heartMove 2s linear reverse forwards;
 }
 
 .beating > img {
-	animation-name: beat;
-	animation-duration: 2s;
-	animation-timing-function: ease-in-out;
-	animation-iteration-count: infinite;
-	animation-play-state: running;
+    animation: beat 2s ease-in-out infinite running;
 }
 
 .openedHer {
-    animation-name: heartMove;
-    animation-duration: 2s;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards;
+    animation: heartMove 2s ease-in-out forwards;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 600px) {
+    .instruction {
+        font-size: 1.2rem;
+    }
+
+    .heart > img {
+        width: 40px;
+    }
+    
+    .message {
+        width: 95%;
+        font-size: clamp(18px, 5vw, 22px);
+        max-height: 75vh;
+    }
 }
